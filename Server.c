@@ -1,12 +1,12 @@
-#define PORT 8111
-#define MAX_QUEUE 1
-#define BUF_SIZE 1024
+
+
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <stdio.h>
+#include <const.h>
 
 main(){
 	int listenerS, clientS;
