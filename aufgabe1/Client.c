@@ -7,8 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <const.h>
 
+#define PORT 8111
+#define BUF_SIZE 1024
 
 main(int argc, char *argv[]){
 	int sock, ret;
@@ -47,7 +48,7 @@ main(int argc, char *argv[]){
 		exit(1);
 	}
 
-	while(ret = read(stdin, buf, BUF_SIZE)){
+	while(ret = read(0, buf, BUF_SIZE)){
 
 		if(ret < 0){
 			perror("Fehler bei der Eingabe.");
