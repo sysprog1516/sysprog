@@ -79,7 +79,12 @@ int main(void){
 		printf("\n");
  
 		FD_SET(stdout_Pipe[0], &set);		
-
+		if(!FD_ISSET(stdout_Pipe[0],&set))
+		{
+			perror("Filedeskrioper nicht in Menge  enthalten");
+			return -1;			
+		}
+		
 		if(write(stdin_Pipe[1],&uebertragung, uebertragungLen) < uebertragungLen){
 
 			perror("write");
@@ -88,8 +93,8 @@ int main(void){
 
 		close(stdin_Pipe[1]);
 
-		ret = pselect(stdout_Pipe[0]+1, &set, NULL, NULL, &timeout, NULL);
-
+		ret = pselect(stdout_Pipe[0]+1, &set, NULL, NULL, &timeout,NULL);
+		//http://linux.die.net/man/2/pselect
 		read(stdout_Pipe[0], buffer, sizeof(buffer)-1);
 
    		if(ret < 0){
